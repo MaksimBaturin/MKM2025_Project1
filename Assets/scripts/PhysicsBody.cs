@@ -7,7 +7,7 @@ public class PhysicsBody : MonoBehaviour
     public Vector2 Acceleration;
 
     public float Mass = 1f;
-    public static Vector2 AccelerationOfFreeFall = new Vector2(0, -9.8f);
+    public Vector2 AccelerationOfFreeFall = new Vector2(0, -9.8f);
     public bool useGravity = true;
 
     public bool IsOnFloor = false;
@@ -22,9 +22,12 @@ public class PhysicsBody : MonoBehaviour
 
     public void Update()
     {
+       
+    }
+    public void FixedUpdate()
+    {
         ApplyPhysics(Time.fixedDeltaTime);
     }
-
     private void ApplyPhysics(float deltaTime)
     {
         if (useGravity && !IsOnFloor)

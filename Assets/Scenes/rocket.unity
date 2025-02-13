@@ -558,10 +558,14 @@ MonoBehaviour:
   Position: {x: 0, y: 0}
   Velocity: {x: 0, y: 0}
   Acceleration: {x: 0, y: 0}
-  Mass: 1500
+  Mass: 6000
+  AccelerationOfFreeFall: {x: 0, y: -1.6}
   useGravity: 1
   IsOnFloor: 0
-  TimeStep: 0.02
+  TimeStep: 0.05
+  FuelMass: 30000
+  FuelVelocity: {x: 0, y: -50}
+  FuelLossRate: 300
 --- !u!224 &954541089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -582,7 +586,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.996}
+  m_AnchoredPosition: {x: 0, y: 0.14}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1683074874
