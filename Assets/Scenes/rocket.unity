@@ -442,6 +442,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec6d70df6130104ca230d7d4e2ffe0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &834657134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 834657135}
+  - component: {fileID: 834657136}
+  m_Layer: 0
+  m_Name: ThrustController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &834657135
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834657134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 954541089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &834657136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834657134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f02d6b19c98ac743b2ba4ff11132489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentThrust: 0
 --- !u!1 &954541084
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,13 +608,14 @@ MonoBehaviour:
   Velocity: {x: 0, y: 0}
   Acceleration: {x: 0, y: 0}
   Mass: 6000
-  AccelerationOfFreeFall: {x: 0, y: -1.6}
+  AccelerationOfFreeFall: {x: 0, y: -9.81}
   useGravity: 1
   IsOnFloor: 0
   TimeStep: 0.05
-  FuelMass: 30000
-  FuelVelocity: {x: 0, y: -50}
-  FuelLossRate: 300
+  FuelMass: 15000
+  MaxFuelVelocity: {x: 0, y: -100}
+  CurrentFuelVelocity: {x: 0, y: 0}
+  FuelLossRate: 100
 --- !u!224 &954541089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -582,11 +632,12 @@ RectTransform:
   - {fileID: 337036451}
   - {fileID: 1683074875}
   - {fileID: 325489861}
+  - {fileID: 834657135}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.14}
+  m_AnchoredPosition: {x: 0, y: -0.58}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1683074874

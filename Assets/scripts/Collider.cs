@@ -22,7 +22,7 @@ public class Collider : MonoBehaviour
                 break;
             case "BottomCollider":
                 Debug.Log("bottom");
-                body.Velocity.y = Mathf.Max(0, body.Velocity.y);
+                body.Velocity.y = 0;
                 body.IsOnFloor = true;
                 break; 
         }

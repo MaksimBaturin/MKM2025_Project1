@@ -38,7 +38,7 @@ public class PhysicsBody : MonoBehaviour
         Velocity += Acceleration * deltaTime;
         Position += Velocity * deltaTime;
 
-        if (Velocity.y != 0 && IsOnFloor)
+        if (Velocity.y > 0 && IsOnFloor)
         {
             IsOnFloor = false;
         }
