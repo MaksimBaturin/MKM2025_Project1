@@ -12,7 +12,7 @@ public class PhysicsBody : MonoBehaviour
 
     public bool IsOnFloor = false;
 
-    public float TimeStep = 0.5f;
+    public float TimeStep = 1f;
 
     public void Start()
     {

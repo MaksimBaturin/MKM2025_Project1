@@ -8,6 +8,8 @@ TagManager:
   - RightCollider
   - TopCollider
   - BottomCollider
+  - Terrain
+  - Test
   layers:
   - Default
   - TransparentFX
