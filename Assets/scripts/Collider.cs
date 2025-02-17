@@ -46,19 +46,19 @@ public class Collider : MonoBehaviour
             switch (collision.otherCollider.tag)
             {
                 case "LeftCollider":
-                    Debug.Log("left");
+                    //Debug.Log("left");
                     //body.Velocity.x = Mathf.Max(0, body.Velocity.x);
                     break;
                 case "RightCollider":
-                    Debug.Log("right");
+                    //Debug.Log("right");
                     //body.Velocity.x = Mathf.Min(0, body.Velocity.x);
                     break;
                 case "TopCollider":
-                    Debug.Log("top");
+                    //Debug.Log("top");
                     //body.Velocity.y = Mathf.Min(0, body.Velocity.y);
                     break;
                 case "BottomCollider":
-                    Debug.Log("bottom");
+                    //Debug.Log("bottom");
                     body.Position.y = collision.collider.bounds.max.y + bodySize.y / 2;
                     break;
             }

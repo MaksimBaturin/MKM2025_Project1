@@ -5,6 +5,7 @@ public class PhysicsBody : MonoBehaviour
     public Vector2 Position;
     public Vector2 Velocity;
     public Vector2 Acceleration;
+    private Vector2 PrevAcceleration;
 
     public float Mass = 1f;
     public Vector2 AccelerationOfFreeFall = new Vector2(0, -9.8f);
@@ -18,16 +19,14 @@ public class PhysicsBody : MonoBehaviour
     {
         Time.fixedDeltaTime = TimeStep;
         Position = transform.position;
+        PrevAcceleration = Acceleration;
     }
 
-    public void Update()
-    {
-       
-    }
     public void FixedUpdate()
     {
         ApplyPhysics(Time.fixedDeltaTime);
     }
+
     private void ApplyPhysics(float deltaTime)
     {
         if (useGravity && !IsOnFloor)
@@ -35,17 +34,18 @@ public class PhysicsBody : MonoBehaviour
             Acceleration += AccelerationOfFreeFall;
         }
 
-        Velocity += Acceleration * deltaTime;
-        Position += Velocity * deltaTime;
+        // Верле в скоростной формулировке
+        Position += Velocity * deltaTime + 0.5f * Acceleration * deltaTime * deltaTime;
+        Velocity += 0.5f * (PrevAcceleration + Acceleration) * deltaTime;
 
         if (Velocity.y > 0 && IsOnFloor)
         {
             IsOnFloor = false;
         }
 
+        PrevAcceleration = Acceleration;
         Acceleration = Vector2.zero;
         transform.position = Position;
-        //Debug.Log($"Position: {Position}, Velocity: {Velocity}, Acceleration: {Acceleration}");
     }
 
     public void ApplyForce(Vector2 force)
