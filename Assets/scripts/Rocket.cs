@@ -5,18 +5,21 @@ public class Rocket : PhysicsBody
     Vector2 Force = new Vector2(0, 0);
 
     public float FuelMass = 1500;
-    public Vector2 MaxFuelVelocity = new Vector2(0, -50);
-    public Vector2 CurrentFuelVelocity = Vector2.zero;
+    public float MaxFuelVelocity = -50;
+    public float CurrentFuelVelocity;
     public float FuelLossRate = 10f;
 
-    public float MassOnStart;
+    public float TorqueForce = 100000f;
+
+    public float MassOnStart { get; private set; }
 
     public ThrustController thrustController;
 
-
+    public Vector2 FuelVelocityDirection { get; private set; }
 
     public void Start()
     {
+
         thrustController = GetComponentInChildren<ThrustController>();
         Mass += FuelMass;
         MassOnStart = Mass;
@@ -27,11 +30,22 @@ public class Rocket : PhysicsBody
     public void FixedUpdate()
     {
 
+        if (Input.GetKey(KeyCode.A))
+        {
+            ApplyTorque(TorqueForce);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            ApplyTorque(-TorqueForce);
+        }
+
+        FuelVelocityDirection = transform.up; 
+
         CurrentFuelVelocity = MaxFuelVelocity * thrustController.CurrentThrust;
-        if (FuelMass > 0 && CurrentFuelVelocity.y < 0)
+        if (FuelMass > 0)
         {
             float CoeffOfFuelLoss = FuelLossRate / Time.fixedDeltaTime;
-            Force = -CurrentFuelVelocity * CoeffOfFuelLoss;
+            Force = -CurrentFuelVelocity * FuelVelocityDirection * CoeffOfFuelLoss;
 
             FuelMass -= FuelLossRate * thrustController.CurrentThrust;
             if (FuelMass < 0) FuelMass = 0;
@@ -39,6 +53,7 @@ public class Rocket : PhysicsBody
 
             ApplyForce(Force);
         }
+
         base.FixedUpdate();
     }
 }

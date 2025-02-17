@@ -1053,16 +1053,20 @@ MonoBehaviour:
   Position: {x: 0, y: 0}
   Velocity: {x: 0, y: 0}
   Acceleration: {x: 0, y: 0}
+  RotationAngle: 0
+  AngularVelocity: 0
+  AngularAcceleration: 0
+  MomentOfInertia: 0
   Mass: 5000
   AccelerationOfFreeFall: {x: 0, y: -9.81}
   useGravity: 1
   IsOnFloor: 0
   TimeStep: 0.01
   FuelMass: 30000
-  MaxFuelVelocity: {x: 0, y: -100}
-  CurrentFuelVelocity: {x: 0, y: 0}
+  MaxFuelVelocity: -100
+  CurrentFuelVelocity: 0
   FuelLossRate: 100
-  MassOnStart: 0
+  TorqueForce: 5
   thrustController: {fileID: 0}
 --- !u!224 &954541089
 RectTransform:
@@ -1073,7 +1077,7 @@ RectTransform:
   m_GameObject: {fileID: 954541084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2.0238137, z: 1}
+  m_LocalScale: {x: 2, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 337036451}
@@ -1086,7 +1090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 189.6, y: 4.6580925}
+  m_AnchoredPosition: {x: 189.6, y: 7.5}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1049875821
@@ -1472,7 +1476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1561,8 +1565,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -324.71747, y: 84.244}
-  m_SizeDelta: {x: -849.435, y: -168.4873}
+  m_AnchoredPosition: {x: -320.5, y: 84.244}
+  m_SizeDelta: {x: -766.9095, y: -168.4873}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1996261150
 MonoBehaviour:

@@ -32,7 +32,7 @@ public class Collider : MonoBehaviour
         }
         else if(collision.collider.tag == "Test")
         {
-            Vector2 ExpectedVelocity = body.MaxFuelVelocity * Mathf.Log(body.MassOnStart / body.Mass) +  body.AccelerationOfFreeFall * Time.fixedDeltaTime;
+            Vector2 ExpectedVelocity = body.MaxFuelVelocity * body.FuelVelocityDirection * Mathf.Log(body.MassOnStart / body.Mass) +  body.AccelerationOfFreeFall * Time.fixedDeltaTime;
             Debug.Log($"Tsiolkovsky velocity: {Mathf.Abs(ExpectedVelocity.y)}\nActual velocity: {Mathf.Abs(body.Velocity.y)}");
         }
     }
