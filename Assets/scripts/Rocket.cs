@@ -9,7 +9,7 @@ public class Rocket : PhysicsBody
     public float CurrentFuelVelocity;
     public float FuelLossRate = 10f;
 
-    public float TorqueForce = 100000f;
+    public float TorqueForce = 1f;
 
     public float MassOnStart { get; private set; }
 

@@ -39,7 +39,7 @@ public class PhysicsBody : MonoBehaviour
 
     private void ApplyPhysics(float deltaTime)
     {
-        MomentOfInertia = 0.001f * Mass * (bodySize.y * 0.5f) * (bodySize.y * 0.5f);
+        MomentOfInertia = 0.5f * Mass * (bodySize.y * 0.5f) * (bodySize.y * 0.5f);
 
         if (useGravity && !IsOnFloor)
         {
