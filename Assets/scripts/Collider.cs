@@ -59,7 +59,7 @@ public class Collider : MonoBehaviour
                     break;
                 case "BottomCollider":
                     //Debug.Log("bottom");
-                    body.Position.y = collision.collider.bounds.max.y + bodySize.y / 2;
+                    body.Position.y = collision.GetContact(0).point.y + bodySize.y / 2;
                     break;
             }
         }
