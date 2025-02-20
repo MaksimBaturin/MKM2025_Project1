@@ -41,12 +41,12 @@ public class Rocket : PhysicsBody
 
         FuelVelocityDirection = transform.up; 
 
-        CurrentFuelVelocity = MaxFuelVelocity * thrustController.CurrentThrust;
+        CurrentFuelVelocity = MaxFuelVelocity;
         if (FuelMass > 0)
         {
-            float CoeffOfFuelLoss = FuelLossRate / Time.fixedDeltaTime;
+            float CoeffOfFuelLoss = FuelLossRate * thrustController.CurrentThrust / Time.fixedDeltaTime;
             Force = -CurrentFuelVelocity * FuelVelocityDirection * CoeffOfFuelLoss;
-
+            //Debug.Log($"Force: {Force} Coeff {CoeffOfFuelLoss}, FuelLossRate {FuelLossRate} Velocity {CurrentFuelVelocity}");
             FuelMass -= FuelLossRate * thrustController.CurrentThrust;
             if (FuelMass < 0) FuelMass = 0;
             Mass -= FuelLossRate * thrustController.CurrentThrust;

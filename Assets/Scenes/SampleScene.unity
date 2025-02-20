@@ -285,7 +285,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 4022447040065319053, guid: 503bfeaf9cd3b8d4f90b8e3e7968e3f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f02d6b19c98ac743b2ba4ff11132489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentThrust: 0
+  CurrentThrust: 1
   ThrustChangeSpeed: 0.5
 --- !u!1 &954541084
 GameObject:
@@ -1264,7 +1264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 189.6, y: 10.44}
+  m_AnchoredPosition: {x: 189.6, y: 9.34}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1075125750
@@ -1949,6 +1949,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 235046646}
   - {fileID: 619394802}
   - {fileID: 448175889}
   - {fileID: 519420032}
@@ -1956,4 +1957,3 @@ SceneRoots:
   - {fileID: 199878508}
   - {fileID: 1731825959}
   - {fileID: 1262741369}
-  - {fileID: 235046646}

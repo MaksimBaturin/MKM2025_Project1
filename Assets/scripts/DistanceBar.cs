@@ -20,7 +20,6 @@ public class DistanceBar : MonoBehaviour
         float currentHeight = rocket.Position.y;
 
         float normalizedHeight = Mathf.Clamp01(currentHeight / MaxSkyHeight);
-        Debug.Log($"{normalizedHeight} {heightOfBar}");
         Vector3 newLocalPosition = heightPointer.localPosition;
         newLocalPosition.y = normalizedHeight * heightOfBar;
         heightPointer.localPosition = newLocalPosition;
