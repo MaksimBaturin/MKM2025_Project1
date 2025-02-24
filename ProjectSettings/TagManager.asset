@@ -4,17 +4,14 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - LeftCollider
-  - RightCollider
-  - TopCollider
-  - BottomCollider
   - Terrain
   - Test
+  - ThrustAnimator
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Terrain
   - Water
   - UI
   - 

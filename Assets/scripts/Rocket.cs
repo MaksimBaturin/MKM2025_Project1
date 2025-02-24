@@ -5,7 +5,7 @@ public class Rocket : PhysicsBody
     Vector2 Force = new Vector2(0, 0);
 
     public float FuelMass = 1500;
-    public float MaxFuelVelocity = -50;
+    public float MaxFuelVelocity = 50;
     public float CurrentFuelVelocity;
     public float FuelLossRate = 10f;
 
@@ -39,19 +39,18 @@ public class Rocket : PhysicsBody
             ApplyTorque(-TorqueForce);
         }
 
-        FuelVelocityDirection = transform.up; 
+        FuelVelocityDirection = -transform.up; 
 
         CurrentFuelVelocity = MaxFuelVelocity;
         if (FuelMass > 0)
         {
-            float CoeffOfFuelLoss = FuelLossRate * thrustController.CurrentThrust / Time.fixedDeltaTime;
-            Force = -CurrentFuelVelocity * FuelVelocityDirection * CoeffOfFuelLoss;
-            //Debug.Log($"Force: {Force} Coeff {CoeffOfFuelLoss}, FuelLossRate {FuelLossRate} Velocity {CurrentFuelVelocity}");
+            float Mu = FuelLossRate * thrustController.CurrentThrust / Time.fixedDeltaTime;
+            Force = CurrentFuelVelocity * FuelVelocityDirection * Mu;
             FuelMass -= FuelLossRate * thrustController.CurrentThrust;
             if (FuelMass < 0) FuelMass = 0;
             Mass -= FuelLossRate * thrustController.CurrentThrust;
 
-            ApplyForce(Force);
+            ApplyReactiveForce(Force);
         }
 
         base.FixedUpdate();
