@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 325489865}
   - component: {fileID: 325489864}
   m_Layer: 0
-  m_Name: Colliderqwe
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -659,7 +659,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325489860}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eec6d70df6130104ca230d7d4e2ffe0f, type: 3}
   m_Name: 
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325489860}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dad1bee0ecee024b947198cf1faeaf4, type: 3}
   m_Name: 
@@ -2261,7 +2261,7 @@ MonoBehaviour:
   scale: 15
   offsetX: 200
   offsetY: 500
-  seed: 531
+  seed: 1231231
 --- !u!4 &1918900830
 Transform:
   m_ObjectHideFlags: 0

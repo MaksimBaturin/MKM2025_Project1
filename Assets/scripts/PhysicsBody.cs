@@ -18,8 +18,8 @@ public class PhysicsBody : MonoBehaviour
     public bool useGravity = true;
 
     public bool IsOnFloor = false;
-    private RaycastHit2D hit;
-    private Ray2D ray;
+    private RaycastHit2D hitLeft;
+    private RaycastHit2D hitRight;
 
     public float TimeStep = 1f;
 
@@ -39,7 +39,43 @@ public class PhysicsBody : MonoBehaviour
 
     public void FixedUpdate()
     {
+        CheckIsOnFloor();
         ApplyPhysics(Time.fixedDeltaTime);
+ 
+    }
+
+    private void CheckIsOnFloor()
+    {
+        float rayLength = bodySize.y + 2f;
+
+        Vector2 rayStartWorldLeft = new Vector2(transform.position.x - bodySize.x * 0.5f - 0.5f, transform.position.y + bodySize.y * 0.5f + 1f);
+        Vector2 rayStartWorldRight = new Vector2(transform.position.x + bodySize.x * 0.5f, transform.position.y + bodySize.y * 0.5f + 1f);
+
+
+        rayStartWorldLeft = RotatePointAroundPivot(rayStartWorldLeft, transform.position, transform.rotation.eulerAngles.z);
+        rayStartWorldRight = RotatePointAroundPivot(rayStartWorldRight, transform.position, transform.rotation.eulerAngles.z);
+
+        Vector2 rayDirection = transform.TransformDirection(Vector2.down);
+
+        Debug.DrawRay(rayStartWorldLeft, rayDirection * rayLength, Color.red);
+        Debug.DrawRay(rayStartWorldRight, rayDirection * rayLength, Color.blue);
+
+        hitLeft = Physics2D.Raycast(rayStartWorldLeft, rayDirection, rayLength, Physics.DefaultRaycastLayers, -1f);
+        hitRight = Physics2D.Raycast(rayStartWorldRight, rayDirection, rayLength, Physics.DefaultRaycastLayers, -1f);
+
+        if (hitLeft.collider.tag == null && hitRight.collider == null) IsOnFloor = false;
+    }
+
+    private Vector2 RotatePointAroundPivot(Vector2 point, Vector2 pivot, float angle)
+    {
+        float rad = angle * Mathf.Deg2Rad;
+        float cos = Mathf.Cos(rad);
+        float sin = Mathf.Sin(rad);
+
+        Vector2 dir = point - pivot;
+        Vector2 rotatedDir = new Vector2(dir.x * cos - dir.y * sin, dir.x * sin + dir.y * cos);
+
+        return pivot + rotatedDir;
     }
 
     private void ApplyPhysics(float deltaTime)
@@ -51,15 +87,12 @@ public class PhysicsBody : MonoBehaviour
             Acceleration += AccelerationOfFreeFall;
         }
 
-        ray = new Ray2D(transform.position, -transform.up);
-        float rayLength = bodySize.y / 2 + 2f;
-        Debug.DrawRay(transform.position, -transform.up * rayLength, Color.red);
-
-        hit = Physics2D.Raycast(ray.origin, ray.direction, rayLength, layerMask: Physics2D.DefaultRaycastLayers, minDepth: -1);
-        if (!hit)
+        if (IsOnFloor)
         {
-            IsOnFloor = false;
+            Vector2 FrictionForce = 1.5f * Mass * AccelerationOfFreeFall.magnitude * (-Velocity.normalized);
+            ApplyFrictionForce(FrictionForce);
         }
+
 
 
         // Верле в скоростной формулировке
@@ -78,11 +111,8 @@ public class PhysicsBody : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, eulerZ);
     }
     public void ApplyReactiveForce(Vector2 force)
-    {
-        if (force.y > -(AccelerationOfFreeFall * Mass).y)
-        {
-            Acceleration += force / Mass;
-        }
+    {        
+         Acceleration += force / Mass;
 
     }
 
