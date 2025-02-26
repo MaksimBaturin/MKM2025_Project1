@@ -11,7 +11,7 @@ public class FrictionForce : MonoBehaviour
         if (collision.collider.tag == "Terrain" && body.Velocity.magnitude > 0)
         {
             Vector2 FrictionForce = FrictionCoefficient * body.Mass * body.AccelerationOfFreeFall.magnitude * (-body.Velocity.normalized);
-            body.ApplyFrictionForce(FrictionForce);
+            body.ApplyForce(FrictionForce);
         }
     }
 
@@ -26,7 +26,7 @@ public class FrictionForce : MonoBehaviour
             float frictionMagnitude = FrictionCoefficient * body.Mass * body.AccelerationOfFreeFall.magnitude;
             Vector2 FrictionForce = -tangent * frictionMagnitude * Vector2.Dot(body.Velocity.normalized, tangent);
 
-            body.ApplyFrictionForce(FrictionForce);
+            body.ApplyForce(FrictionForce);
         }
     }
 }

@@ -50,7 +50,7 @@ public class Rocket : PhysicsBody
             if (FuelMass < 0) FuelMass = 0;
             Mass -= FuelLossRate * thrustController.CurrentThrust;
 
-            ApplyReactiveForce(Force);
+            ApplyForce(Force);
         }
 
         base.FixedUpdate();
