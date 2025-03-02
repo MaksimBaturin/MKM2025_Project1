@@ -3,11 +3,11 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    private Rocket rocket;
-    private Vector3 offset;
+    [SerializeField] private Rocket rocket;
+    [SerializeField]private Vector3 offset;
     private void Start()
     {
-        rocket = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocket>();
+        rocket = GameObject.FindAnyObjectByType<Rocket>();
         offset = transform.position - rocket.transform.position;
     }
     private void LateUpdate()
