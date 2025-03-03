@@ -1,3 +1,4 @@
+using UnityEditor.UI;
 using UnityEngine;
 
 public class Rocket : PhysicsBody
@@ -17,19 +18,37 @@ public class Rocket : PhysicsBody
 
     public Vector2 FuelVelocityDirection { get; private set; }
 
+    public Animator ExplosionAnimator;
+
+    private bool isDeath = false;
+    public bool IsDeath
+    {
+        get { return isDeath; }
+        set { if (value == true)
+            {
+                isDeath = true;
+                ExplosionAnimator.SetBool("IsDeath", isDeath);
+            }
+        } 
+    }
+        
     public void Start()
     {
-
+        IsDeath = false;
         thrustController = GetComponentInChildren<ThrustController>();
         Mass += FuelMass;
         MassOnStart = Mass;
         base.Start();
-    }
 
+        ExplosionAnimator = GameObject.Find("Explosion").GetComponent<Animator>();
+    }
 
     public void FixedUpdate()
     {
-
+        if (Input.GetKey(KeyCode.F))
+        {
+            IsDeath = true;
+        }
         if (Input.GetKey(KeyCode.A))
         {
             ApplyTorque(TorqueForce);
