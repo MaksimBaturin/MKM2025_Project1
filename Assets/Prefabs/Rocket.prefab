@@ -471,6 +471,7 @@ GameObject:
   - component: {fileID: 8712661920255865923}
   - component: {fileID: 3551645771128129403}
   - component: {fileID: 6121440343656513740}
+  - component: {fileID: 4569984946359946251}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -487,7 +488,7 @@ Transform:
   m_GameObject: {fileID: 2425361061396554338}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.70710564, w: 0.70710796}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00557, y: -0.00739, z: 0}
   m_LocalScale: {x: 9.536101, y: 9.536101, z: 9.536101}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -570,6 +571,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4569984946359946251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2425361061396554338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e2c579b62164641bb3aa07e3e67e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2708526548374529875
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +706,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df36f00ee962f546ab3b010e9d68a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3338615542083727349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6719729131331547557}
+  - component: {fileID: 6881881602851893792}
+  m_Layer: 0
+  m_Name: ParamSaver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6719729131331547557
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3338615542083727349}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4194984661623397773}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6881881602851893792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3338615542083727349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ba846cff8c4bd46b5020f419d582ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocket: {fileID: 0}
+  deltaTimeForGraphs: 0.2
 --- !u!1 &4298525451317059004
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +913,7 @@ RectTransform:
   - {fileID: 599644321566455548}
   - {fileID: 5174719127542644763}
   - {fileID: 5037928333394051094}
+  - {fileID: 6719729131331547557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -884,10 +948,10 @@ MonoBehaviour:
   MaxFuelVelocity: -10000
   CurrentFuelVelocity: 0
   FuelLossRate: 1
-  TorqueForce: 500000
+  SideThrusterFuelLossRate: 1
+  SideThrusterFuelVelocity: 15000
   thrustController: {fileID: 0}
   ExplosionAnimator: {fileID: 0}
-  IsDeath: 0
 --- !u!212 &5245492336962649564
 SpriteRenderer:
   m_ObjectHideFlags: 0

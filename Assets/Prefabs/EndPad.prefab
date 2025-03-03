@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 442412475134663387}
   m_Layer: 0
   m_Name: End
-  m_TagString: Untagged
+  m_TagString: EndPad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,6 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8811188518526417227}
   - component: {fileID: 8415198418487843884}
+  - component: {fileID: 3265430089041995000}
   m_Layer: 0
   m_Name: EndPad
   m_TagString: EndPad
@@ -325,6 +326,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3265430089041995000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484510146050486660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ba1f867a918c746bf72df18ee0736e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6966584230284834056
 GameObject:
   m_ObjectHideFlags: 0

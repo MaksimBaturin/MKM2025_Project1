@@ -2,12 +2,24 @@ using UnityEngine;
 
 public class Collider : MonoBehaviour
 {
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Rocket body = collision.otherCollider.GetComponentInParent<Rocket>();
 
+        if (collision.collider.tag == "Terrain" && Mathf.Abs(body.Velocity.y) > body.MaxSpeedOnCollision)
+        {
+            body.IsDeath = true;
+        }
+        else if (collision.collider.tag == "Wall" && Mathf.Abs(body.Velocity.x) > body.MaxSpeedOnCollision)
+        {
+            body.IsDeath = true;
+        }
+
+
         if (collision.collider.tag == "Terrain")
         {
+            
             body.IsOnFloor = true;
             body.Velocity.y = 0;
             body.ApplyCollisionResponse();

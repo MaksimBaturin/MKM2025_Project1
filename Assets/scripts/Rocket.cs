@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Rocket : PhysicsBody
 {
+    readonly public float MaxSpeedOnCollision = 20;
+
     Vector2 Force = new Vector2(0, 0);
 
     public float FuelMass = 1500;
@@ -10,7 +12,8 @@ public class Rocket : PhysicsBody
     public float CurrentFuelVelocity;
     public float FuelLossRate = 10f;
 
-    public float TorqueForce = 1f;
+    public float SideThrusterFuelLossRate = 10f;
+    public float SideThrusterFuelVelocity = 1f;
 
     public float MassOnStart { get; private set; }
 
@@ -31,6 +34,8 @@ public class Rocket : PhysicsBody
             }
         } 
     }
+
+    public bool IsWin = false;
         
     public void Start()
     {
@@ -51,10 +56,22 @@ public class Rocket : PhysicsBody
         }
         if (Input.GetKey(KeyCode.A))
         {
+            float Mu = SideThrusterFuelLossRate / Time.fixedDeltaTime;
+            float TorqueForce = SideThrusterFuelVelocity * Mu;
+
+            FuelMass -= SideThrusterFuelLossRate;
+            Mass -= SideThrusterFuelLossRate;
+
             ApplyTorque(TorqueForce);
         }
         if (Input.GetKey(KeyCode.D))
         {
+            float Mu = SideThrusterFuelLossRate / Time.fixedDeltaTime;
+            float TorqueForce = SideThrusterFuelVelocity * Mu;
+
+            FuelMass -= SideThrusterFuelLossRate;
+            Mass -= SideThrusterFuelLossRate;
+
             ApplyTorque(-TorqueForce);
         }
 
