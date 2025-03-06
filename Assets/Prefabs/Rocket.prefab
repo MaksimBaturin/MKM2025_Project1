@@ -225,12 +225,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5174719127542644763}
   - component: {fileID: 5444567345962769482}
-  - component: {fileID: 6234530897218472834}
   - component: {fileID: 1241934516745543101}
   - component: {fileID: 1302538069101623586}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,18 +266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FrictionCoefficient: 0.8
---- !u!114 &6234530897218472834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441245395386260415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe1aa32d3f4f264986af81c6a811c33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1241934516745543101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -755,7 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocket: {fileID: 0}
-  deltaTimeForGraphs: 0.2
+  deltaTimeForGraphs: 0.5
 --- !u!1 &4298525451317059004
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,6 +931,8 @@ MonoBehaviour:
   useGravity: 1
   IsOnFloor: 0
   TimeStep: 0.01
+  MaxSpeedOnCollision: 40
+  TsiolkovskyVelocity: {x: 0, y: 0}
   FuelMass: 30000
   MaxFuelVelocity: -10000
   CurrentFuelVelocity: 0
@@ -952,6 +941,7 @@ MonoBehaviour:
   SideThrusterFuelVelocity: 15000
   thrustController: {fileID: 0}
   ExplosionAnimator: {fileID: 0}
+  IsWin: 0
 --- !u!212 &5245492336962649564
 SpriteRenderer:
   m_ObjectHideFlags: 0

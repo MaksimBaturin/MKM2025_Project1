@@ -11,6 +11,7 @@ public class ParamSaver : MonoBehaviour
 
     private List<RocketData> rocketDataList = new List<RocketData>();
     private const int SaveInterval = 100;
+    private string filePath;
 
     void Start()
     {
@@ -20,11 +21,21 @@ public class ParamSaver : MonoBehaviour
         {
             Debug.LogError("Rocket not found!");
         }
+
+        filePath = Path.Combine(Application.persistentDataPath, "rocket_data.json");
+
+        // Очистка файла при старте
+        if (File.Exists(filePath))
+        {
+            File.WriteAllText(filePath, "");
+            Debug.Log("Файл очищен при старте.");
+        }
     }
 
     void FixedUpdate()
     {
         float velocity = rocket.Velocity.magnitude;
+        float tsiolkovskyVelocity = rocket.TsiolkovskyVelocity.magnitude;
         Vector2 position = rocket.Position;
 
         if (Time.time - lastPointTime1 >= deltaTimeForGraphs)
@@ -35,16 +46,18 @@ public class ParamSaver : MonoBehaviour
             {
                 time = Time.time,
                 velocity = velocity,
-                position = position
+                tsiolkovsky = tsiolkovskyVelocity,
+                position = position,
+                fuelmass = rocket.FuelMass
             };
 
             rocketDataList.Add(data);
 
             if (rocketDataList.Count >= SaveInterval)
             {
-                SaveDataToJson();
+                AppendDataToJson();
                 rocketDataList.Clear();
-                Debug.Log("Data saved and list cleared.");
+                Debug.Log("Данные добавлены и список очищен.");
             }
         }
     }
@@ -53,23 +66,35 @@ public class ParamSaver : MonoBehaviour
     {
         if (rocketDataList.Count > 0)
         {
-            SaveDataToJson();
-            Debug.Log("Final data saved on destroy.");
+            AppendDataToJson();
+            Debug.Log("Финальные данные сохранены при уничтожении объекта.");
         }
     }
 
-    private void SaveDataToJson()
+    private void AppendDataToJson()
     {
-        RocketDataWrapper wrapper = new RocketDataWrapper
+        List<RocketData> existingData = new List<RocketData>();
+
+        // Если файл существует и не пуст, загружаем старые данные
+        if (File.Exists(filePath) && new FileInfo(filePath).Length > 0)
         {
-            data = rocketDataList
-        };
+            string existingJson = File.ReadAllText(filePath);
+            RocketDataWrapper existingWrapper = JsonUtility.FromJson<RocketDataWrapper>(existingJson);
+            if (existingWrapper != null && existingWrapper.data != null)
+            {
+                existingData = existingWrapper.data;
+            }
+        }
 
+        // Добавляем новые данные
+        existingData.AddRange(rocketDataList);
+
+        // Оборачиваем и сохраняем
+        RocketDataWrapper wrapper = new RocketDataWrapper { data = existingData };
         string json = JsonUtility.ToJson(wrapper, true);
+        File.WriteAllText(filePath, json);
 
-        string path = Path.Combine(Application.persistentDataPath, "rocket_data.json");
-        File.WriteAllText(path, json);
-        Debug.Log("Data saved to " + path);
+        Debug.Log("Данные добавлены в " + filePath);
     }
 
     [System.Serializable]
@@ -77,6 +102,8 @@ public class ParamSaver : MonoBehaviour
     {
         public float time;
         public float velocity;
+        public float tsiolkovsky;
+        public float fuelmass;
         public Vector2 position;
     }
 

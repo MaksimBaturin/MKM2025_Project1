@@ -9,6 +9,7 @@ TagManager:
   - ThrustAnimator
   - Wall
   - EndPad
+  - PlayerCollider
   layers:
   - Default
   - TransparentFX

@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Rocket : PhysicsBody
 {
-    readonly public float MaxSpeedOnCollision = 20;
+    public float MaxSpeedOnCollision = 20;
 
     Vector2 Force = new Vector2(0, 0);
+
+    public Vector2 TsiolkovskyVelocity;
 
     public float FuelMass = 1500;
     public float MaxFuelVelocity = 50;
@@ -50,29 +52,39 @@ public class Rocket : PhysicsBody
 
     public void FixedUpdate()
     {
+        TsiolkovskyVelocity = MaxFuelVelocity * FuelVelocityDirection * Mathf.Log(MassOnStart / Mass) + AccelerationOfFreeFall * Time.fixedDeltaTime;
         if (Input.GetKey(KeyCode.F))
         {
             IsDeath = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            float Mu = SideThrusterFuelLossRate / Time.fixedDeltaTime;
-            float TorqueForce = SideThrusterFuelVelocity * Mu;
+            if (FuelMass > 0)
+            {
+                float Mu = SideThrusterFuelLossRate / Time.fixedDeltaTime;
+                float TorqueForce = SideThrusterFuelVelocity * Mu;
 
-            FuelMass -= SideThrusterFuelLossRate;
-            Mass -= SideThrusterFuelLossRate;
+                FuelMass -= SideThrusterFuelLossRate;
+                if (FuelMass < 0) FuelMass = 0;
+                Mass -= SideThrusterFuelLossRate;
 
-            ApplyTorque(TorqueForce);
+                ApplyTorque(TorqueForce);
+            }
         }
         if (Input.GetKey(KeyCode.D))
         {
-            float Mu = SideThrusterFuelLossRate / Time.fixedDeltaTime;
-            float TorqueForce = SideThrusterFuelVelocity * Mu;
+            if (FuelMass > 0)
+            {
+                float Mu = SideThrusterFuelLossRate / Time.fixedDeltaTime;
+                float TorqueForce = SideThrusterFuelVelocity * Mu;
 
-            FuelMass -= SideThrusterFuelLossRate;
-            Mass -= SideThrusterFuelLossRate;
+                FuelMass -= SideThrusterFuelLossRate;
+                if (FuelMass < 0) FuelMass = 0;
+                Mass -= SideThrusterFuelLossRate;
 
-            ApplyTorque(-TorqueForce);
+                ApplyTorque(-TorqueForce);
+            }
+            
         }
 
         FuelVelocityDirection = -transform.up; 

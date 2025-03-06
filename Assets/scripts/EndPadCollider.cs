@@ -10,7 +10,8 @@ public class EndPadCollider : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player" && collision.otherCollider.tag == "EndPad") {
+        if (collision.collider.tag == "PlayerCollider" && collision.otherCollider.tag == "EndPad") {
+
             rocket.IsWin = true;
         }
     }

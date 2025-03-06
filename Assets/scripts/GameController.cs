@@ -8,22 +8,25 @@ public class GameController : MonoBehaviour
     private Rocket rocket;
     private bool IsMenuShow = false;
 
-    void Update()
+    private void Start()
     {
         if (rocket == null)
         {
             rocket = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocket>();
         }
-
+    }
+    void Update()
+    {
+      
         if (rocket.IsDeath && !IsMenuShow)
         {
             IsMenuShow = true;
-            StartCoroutine(ShowEndGameMenu("Вы проиграли"));
+            StartCoroutine(ShowEndGameMenu("Вы проиграли!"));
         }
-        else if (!rocket.IsDeath && rocket.IsWin)
+        else if (!rocket.IsDeath && rocket.IsWin && rocket.IsOnFloor && !IsMenuShow)
         {
             IsMenuShow = true;
-            StartCoroutine(ShowEndGameMenu("Вы выиграли"));
+            StartCoroutine(ShowEndGameMenu("Вы выиграли!"));
         }
     }
 
@@ -33,5 +36,8 @@ public class GameController : MonoBehaviour
 
         EndGameUI.GetComponent<EndMenu>().EndText = endText;
         Instantiate(EndGameUI);
+
+        GameObject.Find("RocketSprite").GetComponent<SpriteRenderer>().enabled = false;
+        rocket.enabled = false;
     }
 }
